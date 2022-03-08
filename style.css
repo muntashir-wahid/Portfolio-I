@@ -3,6 +3,7 @@
 :root {
   --logo-font:'Playball', cursive;
   --bg-color: #fffffe ;
+  --sticky-nav-color: #fffffec0;
   --btn-bg: #1e90ff;
   --heading-color: #094067;
   --section-padding: 40px 50px;
@@ -61,19 +62,21 @@ a {
 /*section Heading Ends */
 /* Nav start*/
 
-nav {
+.nav-bar {
+  height: 50px;
   width: 100%;
   background-color: var(--bg-color) ;
   padding: 0 50px;
-  position: fixed;
-  top: 0;
-  z-index: 1;
-}
-.nav-bar {
-  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
+}
+
+.sticky-nav {
+  position: fixed;
+  background-color: var(--sticky-nav-color);
+  top: 0;
 }
 
 .logo a {
@@ -115,7 +118,6 @@ nav {
 .hero {
   width: 100%;
   height: 500px;
-  margin-top: 50px;
   background: url('./img/hero-banner.jpg') center center/cover;
   display: flex;
   flex-direction: column;
