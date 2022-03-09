@@ -6,7 +6,8 @@ const navBar = document.querySelector('.nav-bar');
 const navLinksEl = document.querySelectorAll(".nav_link");
 const navMenuEl = document.querySelector('.nav-menu');
 const heroSection = document.getElementById('hero');
-console.log(navBar);
+const allSections = document.querySelectorAll('.section');
+console.log(allSections)
 
 // Smooth scrolling using event delegation 
 navMenuEl.addEventListener('click', function(e) {
@@ -21,7 +22,6 @@ navMenuEl.addEventListener('click', function(e) {
 
 const stickyNav = function(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
   if (!entry.isIntersecting) {
     navBar.classList.add('sticky-nav');
   } else {
@@ -32,12 +32,30 @@ const stickyNav = function(entries, observer) {
 
 const ovserver = new IntersectionObserver(stickyNav, {
   root: null, 
-  threshold: 0.10,
-  rootMargin: '-50px'
+  threshold: 0,
 });
 ovserver.observe(heroSection);
 
+// Reveal sections 
 
+const revealSection = function(entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+    if (entry.isIntersecting) {
+      entry.target.classList.remove('section-hidden');
+      observer.unobserve(entry.target);
+    }; 
+}
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.1,
+});
+
+allSections.forEach(section => {
+  sectionObserver.observe(section);
+  section.classList.add('section-hidden');
+})
 
 
 
