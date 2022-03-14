@@ -61,15 +61,15 @@ allSections.forEach(section => {
 
 const skillbarLoadEffect = function () {
 
+  // Callback function for observer
   const skillbarLoader = function(entries, observer) {
     const [entry] = entries;
-    const skills = ['html', 'css', 'js', 'figma'];
     if (entry.isIntersecting) {
-      entry.target
-        .querySelectorAll('.skill-bar-loder')
-        .forEach((el, i) => {
-          el.classList.add(skills[i]);
-        });
+      const skillBarLoaders = entry.target.querySelectorAll('.skill-bar-loder');
+      skillBarLoaders.forEach(el => {
+        const {skill} = el.dataset; 
+        el.classList.add(skill);
+      });
     observer.unobserve(aboutSubSection);
   };
 };
