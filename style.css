@@ -231,24 +231,23 @@ header {
   font-weight: 500;
   text-align: center;
   color: #EF4565;
-  transition: width 1s;
-  transition-timing-function: ease-in;
+  transition: width 1.5s;
   transition-delay: .2s;
 }
 
-.skill-bar:hover .html {
+.html {
   width: 85%;
 }
 
-.skill-bar:hover .css {
+.css {
   width: 60%;
 }
 
-.skill-bar:hover .js {
-  width: 15%;
+.js {
+  width: 50%;
 }
 
-.skill-bar:hover .figma {
+.figma {
   width: 80%;
 }
 

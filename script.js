@@ -7,7 +7,8 @@ const navLinksEl = document.querySelectorAll(".nav_link");
 const navMenuEl = document.querySelector('.nav-menu');
 const heroSection = document.getElementById('hero');
 const allSections = document.querySelectorAll('.section');
-console.log(allSections)
+const aboutSubSection = document.querySelector('.about-sub-sec');
+// console.log(aboutSubSection);
 
 // Smooth scrolling using event delegation 
 navMenuEl.addEventListener('click', function(e) {
@@ -40,7 +41,6 @@ ovserver.observe(heroSection);
 
 const revealSection = function(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
     if (entry.isIntersecting) {
       entry.target.classList.remove('section-hidden');
       observer.unobserve(entry.target);
@@ -55,10 +55,34 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 allSections.forEach(section => {
   sectionObserver.observe(section);
   section.classList.add('section-hidden');
-})
+});
 
+// Skill bar loader
 
+const skillbarLoadEffect = function () {
 
+  const skillbarLoader = function(entries, observer) {
+    const [entry] = entries;
+    const skills = ['html', 'css', 'js', 'figma'];
+    if (entry.isIntersecting) {
+      entry.target
+        .querySelectorAll('.skill-bar-loder')
+        .forEach((el, i) => {
+          el.classList.add(skills[i]);
+        });
+    observer.unobserve(aboutSubSection);
+  };
+};
+
+  // Observer
+  const aboutSubSectionObserver = new IntersectionObserver(skillbarLoader, {
+    root: null,
+    threshold: 1,
+  });
+  aboutSubSectionObserver.observe(aboutSubSection);
+};
+
+skillbarLoadEffect();
 
 
 
